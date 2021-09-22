@@ -1,0 +1,35 @@
+version: '3'
+services:
+  serverread:
+    build:
+      context: .
+      dockerfile: ServerRead/ServerRead.Dockerfile
+      # dockerfile: michaelok1997/serverread:latest
+    ports: 
+      - "50051:50051"
+  clientread:
+    build:
+      context: .
+      dockerfile: ClientRead/ClientRead.Dockerfile
+      # dockerfile: michaelok1997/clientread:latest
+    depends_on:
+      - "serverread"
+    command: ["./wait-for-it.sh", "serverread:50051", "--", "python", "ClientRead/clientread.py"]
+
+
+  # Setup Redis to store log information
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  
+  # Setup Weblog
+  weblogs:
+    build:
+      context: .
+      dockerfile: WebLog/WebLog.Dockerfile
+      # dockerfile: michaelok1997/weblogs:latest
+    ports:
+      - "8080:5000"
+    depends_on:
+    - "redis"

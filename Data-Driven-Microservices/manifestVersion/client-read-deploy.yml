@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clientread-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clientread
+  minReadySeconds: 8
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: clientread
+    spec:
+      containers:
+      - name: clientread
+        image: michaelok1997/clientread:latest

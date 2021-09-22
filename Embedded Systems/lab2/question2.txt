@@ -1,0 +1,50 @@
+The while loop is stated on line 25
+
+    WhileStmt 0x1c54138 <line:5:1, line:9:1>
+
+The operator used to compare the integers used to check the truth of
+the statement is declared on line 27 and 28
+
+    BinaryOperator 0x1c08a80 <line:5:8, col:10> 'int' '<'
+    | -ImplicitCastExpr 0x1c08a68 <col:8> 'int' <LValueToRValue>
+
+The integers are then declared with their types on lines 28 to 30
+
+    
+    | | | `-DeclRefExpr 0x1c08a20 <col:8> 'int' lvalue Var 0x1c08820 'i' 'int'
+    | | `-IntegerLiteral 0x1c08a48 <col:10> 'int' 10
+
+The if statement is then declared on line 32
+    
+    IfStmt 0x1c54008 <line:6:4, line:7:13>
+
+The operator used to compare the integers used to check the truth of
+the statement is declared on line 34 and 35
+
+    BinaryOperator 0x1c53ea0 <line:6:8, col:10> 'int' '&'
+    |-ImplicitCastExpr 0x1c08af0 <col:8> 'int' <LValueToRValue>
+
+The integers are then declared with their types on lines 36 and 37
+
+    | `-DeclRefExpr 0x1c08aa8 <col:8> 'int' lvalue Var 0x1c08820 'i' 'int'
+    |   | | `-IntegerLiteral 0x1c08ad0 <col:10> 'int' 1
+
+If the if statement is true then the integer 'j' will be set to equal a certain
+value as seen on lines 38 and 39
+
+    -BinaryOperator 0x1c53fe0 <line:7:7, col:13> 'int' '='
+     | |-DeclRefExpr 0x1c53ec8 <col:7> 'int' lvalue Var 0x1c08890 'j' 'int'
+
+Then the two addition operators will be stated to declare that the following
+sub trees will be added
+
+    `-BinaryOperator 0x1c53fb8 <col:9, col:13> 'int' '+'
+    |   | |   |-BinaryOperator 0x1c53f70 <col:9, col:11> 'int' '+'
+    |   | |   | |-ImplicitCastExpr 0x1c53f40 <col:9> 'int' <LValueToRValue>
+
+Then the integer values to be added will be declared
+      | |-ImplicitCastExpr 0x1c53f40 <col:9> 'int' <LValueToRValue>
+       | | `-DeclRefExpr 0x1c53ef0 <col:9> 'int' lvalue Var 0x1c08890 'j' 'int'
+      | `-ImplicitCastExpr 0x1c53f58 <col:11> 'int' <LValueToRValue>
+       |   `-DeclRefExpr 0x1c53f18 <col:11> 'int' lvalue Var 0x1c08820 'i' 'int'
+    `-IntegerLiteral 0x1c53f98 <col:13> 'int' 10
